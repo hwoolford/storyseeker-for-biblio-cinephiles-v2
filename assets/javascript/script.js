@@ -7,7 +7,6 @@ const outputList = document.getElementById("book-output")
 const row = document.getElementsByClassName("row")
 const placeHldr = "";
 let searchData;
-const API_KEY = process.env.API_KEY;
 
 const movieAuth = {
   method: "GET",
