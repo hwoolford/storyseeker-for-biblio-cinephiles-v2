@@ -18,7 +18,7 @@ const movieAuth = {
 };
 
 function findMovies(search) {
-  let movieURL = `https://api.themoviedb.org/3/search/movie?include_adult=false&original_language=en-US&page=1&query=${search}`;
+  let movieURL = `https://api.themoviedb.org/3/search/movie?include_adult=false&original_language=en-US&page=1&query=${search}?api_key=9647c3387122f212c6ed1ddeb758ffb2`;
   fetch(movieURL, movieAuth)
     .then(function (response) {
       return response.json();
