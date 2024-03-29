@@ -23,9 +23,12 @@
   <!-- Div, Button, Add form or button -->
   <div>
     <form id="user-form">
-      <label for="keyword"> Input keywords here:</label><br> 
-      <input class="input is-primary" type="text" id="search-input" name="keyword" autocomplete="on">
-      <input class="button is-primary" type="submit" value="Search">
+      <div class="text-input">
+      <input class="input is-primary" type="text" id="search-input" name="keyword" autocomplete="on" placeholder="Enter Keyword Here">
+    </div>
+    <div class="button-input">
+      <input class="button is-primary" type="submit" id="button" value="Search">
+    </div>
     </form>
   </div>
   </div>
@@ -41,39 +44,18 @@
 
     <div class="row">
       <div class="column">
-        <div class="card">
-        </div>
-        <div class="container">
-        </div>
+        <div class="card"></div>
+        <div class="container"></div>
       </div>
-
     </div>
+
     <div class="column">
       <div class="card">
-        <div class="container">
-        </div>
+        <div class="container"></div>
       </div>
-    </div>
-    </div>
-    <div id="myModal" class="modal">
-      <div class="modal-background"></div>
-      <div class="modal-content">
-        <div class="box">
-          <p>Please enter a search term</p>
-        </div>
-      </div>
-      <button class="modal-close is-large" aria-label="close"></button>
-    </div>
-    <button id="openModalButton">Open Modal</button>
-    <div id="myModal" class="modal">
-      <!-- Modal content goes here -->
     </div>
   </main>
 
-
-
-
-  
   <footer>Apis included:https://developer.themoviedb.org/docs/getting-started, https://openlibrary.org/developers/api.
    Storyseeker Website by Heather Woolford, Adam Smith, and Kiki Kittredge</footer>
   <!-- Footer, Add attribution for API's, Created by Heather, Kiki, and Adam -->

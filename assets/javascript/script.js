@@ -5,6 +5,7 @@ const main = document.getElementById("main_movie");
 const tableBody = document.getElementById("table");
 const outputList = document.getElementById("book-output");
 const row = document.getElementsByClassName("row");
+const btn = document.getElementById("button");
 const placeHldr = "";
 let searchData;
 
@@ -36,7 +37,7 @@ function showMovies(movies) {
     movieEl.classList.add("movie-element");
     if (poster_path == null) {
       movieEl.innerHTML = `
-      <h2>${title}</h2>
+      <h2 class = "output-title">${title}</h2>
       <div class = "movieInfo">
 
       <img id="placeholder" src="./assets/images/StorySeeker_placeholder_image.png" alt ="${title}" /> 
@@ -47,7 +48,7 @@ function showMovies(movies) {
           `;
     } else if (overview == "") {
       movieEl.innerHTML = `
-      <h2>${title}</h2>
+      <h2 class = "output-title">${title}</h2>
       <div class = "movieInfo">
       <img src="${imagePath + poster_path}" alt ="${title}" />
       <div class="overview">
@@ -57,7 +58,7 @@ function showMovies(movies) {
           `;
     } else {
       movieEl.innerHTML = `
-            <h2>${title}</h2>
+            <h2 class = "output-title">${title}</h2>
             <div class = "movieInfo">
             <img src="${imagePath + poster_path}" alt ="${title}" />
             <div class="overview">
@@ -69,27 +70,6 @@ function showMovies(movies) {
     main.appendChild(movieEl);
   });
 }
-
-const modal = document.getElementById("myModal");
-const openModalButton = document.getElementById("openModalButton");
-openModalButton.style.display = "none";
-const closeModalButton = document.querySelector(".modal-close");
-
-openModalButton.addEventListener("click", () => {
-  modal.classList.add("is-active");
-});
-
-closeModalButton.addEventListener("click", () => {
-  modal.classList.remove("is-active");
-});
-// Select the modal element and store it in a variable
-const modal1 = document.getElementById("modal");
-
-// Add an event listener to the modal close button
-const modalCloseButton = modal.querySelector(".modal-close");
-modalCloseButton.addEventListener("click", () => {
-  modal.classList.remove("is-active");
-});
 
 function findBooks(search) {
   const bookURL = `https://openlibrary.org/subjects/${search}.json`;
@@ -105,7 +85,7 @@ function findBooks(search) {
           const bookEl = document.createElement("div");
           bookEl.classList.add("book-element");
           bookEl.innerHTML = `
-              <h2>${book.title}</h2>
+              <h2 class = "output-title">${book.title}</h2>
               <div class="bookInfo">
                 <img src="https://covers.openlibrary.org/b/olid/${book.cover_edition_key}-M.jpg" />
               </div>
@@ -120,23 +100,24 @@ function findBooks(search) {
     });
 }
 
+formInput.addEventListener("input", function () {
+  const errorMessage = formInput.parentNode.querySelector(".error-message");
+  if (errorMessage) {
+    errorMessage.remove(); // Remove the error message from the DOM
+  }
+});
+
 form.addEventListener("submit", function (event) {
   event.preventDefault();
-  const searchInput = formInput.value;
-  let storedHistory = JSON.parse(localStorage.getItem("searchTerm")) || [];
+  const searchInput = formInput.value.trim();
+  if (searchInput === "") {
+    // If the search input is empty, display a message
+    const errorMessage = document.createElement("p");
+    errorMessage.textContent = "Please enter a search term.";
+    errorMessage.classList.add("error-message"); // Add a class for styling
 
-  if (!Array.isArray(storedHistory)) {
-    storedHistory = [];
-  }
-
-  if (!storedHistory.includes(searchInput)) {
-    storedHistory.push(searchInput);
-  }
-  localStorage.setItem("searchTerm", JSON.stringify(storedHistory));
-  if (searchInput && searchInput !== "") {
-    findMovies(searchInput);
-    findBooks(searchInput);
-    showHistory();
+    // Insert the error message after the form input
+    formInput.parentNode.insertBefore(errorMessage, formInput.nextSibling);
   } else {
     // Open the modal instead of showing an alert
     modal.classList.add("is-active");
@@ -153,7 +134,7 @@ let showHistory = function () {
       createTableRow.setAttribute("id", "tableRow");
       let tableData = document.createElement("td");
       let searchHistory = document.createElement("a");
-      searchHistory.setAttribute("id", "input");
+      searchHistory.setAttribute("id", "history");
       $("#search-input").val("");
       searchHistory.textContent = history;
       tableData.appendChild(searchHistory);

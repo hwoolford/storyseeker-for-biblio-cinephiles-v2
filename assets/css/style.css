@@ -12,8 +12,9 @@ header {
 }
 
 #information {
-  background-color: #fdfffc;
-  border-bottom: #011627 1px solid;
+  background-color: #011627;
+  border-bottom: #00d1b2 5px solid;
+  color: white;
 }
 
 #directions {
@@ -23,10 +24,12 @@ header {
 #user-form {
   padding-left: 1.5rem;
   padding-bottom: 1.5rem;
+  display: flex;
 }
 
 #search-history {
   padding-left: 2rem;
+  padding-top: 2rem;
 }
 
 #book-output {
@@ -38,9 +41,22 @@ header {
   width: 15rem;
 }
 
+#history {
+  font-size: 1.5rem;
+  font-weight: bold;
+  /* color: #00d1b2; */
+  color: #011627;
+}
+
 #main_movie {
   padding-right: 2.5rem;
   padding-top: 2rem;
+}
+
+.output-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #011627;
 }
 
 .movieInfo {
@@ -53,7 +69,7 @@ header {
 }
 
 .overview {
-  padding: 2rem;
+  padding: 1rem;
 }
 
 #placeholder {
