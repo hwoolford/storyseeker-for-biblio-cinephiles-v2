@@ -7,20 +7,20 @@ const outputList = document.getElementById("book-output")
 const row = document.getElementsByClassName("row")
 const placeHldr = "";
 let searchData;
+const API_KEY = process.env.API_KEY;
 
-// const movieAuth = {
-//   method: "GET",
-//   headers: {
-//     accept: "application/json",
-//     Authorization:
-//       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NjQ3YzMzODcxMjJmMjEyYzZlZDFkZGViNzU4ZmZiMiIsInN1YiI6IjY1NGQwZGE0ZmQ0ZjgwMDExZWQzZDhjOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HB0iJ-sayz4Ungi3ekOAARph1iwM4wQe_pzuZsOeyzQ",
-//   },
-// };
+const movieAuth = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NjQ3YzMzODcxMjJmMjEyYzZlZDFkZGViNzU4ZmZiMiIsInN1YiI6IjY1NGQwZGE0ZmQ0ZjgwMDExZWQzZDhjOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HB0iJ-sayz4Ungi3ekOAARph1iwM4wQe_pzuZsOeyzQ",
+  },
+};
 
 function findMovies(search) {
-  let movieURL = `https://api.themoviedb.org/3/search/movie?include_adult=false&original_language=en-US&page=1&query=${search}?api_key=9647c3387122f212c6ed1ddeb758ffb2`;
-  // fetch(movieURL, movieAuth)
-  fetch(movieURL)
+  let movieURL = `https://api.themoviedb.org/3/search/movie?include_adult=false&original_language=en-US&page=1&query=${search}`;
+  fetch(movieURL, movieAuth)
     .then(function (response) {
       return response.json();
     })
