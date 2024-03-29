@@ -7,7 +7,6 @@ const outputList = document.getElementById("book-output")
 const row = document.getElementsByClassName("row")
 const placeHldr = "";
 let searchData;
-const API_KEY = process.env.API_KEY;
 
 // const movieAuth = {
 //   method: "GET",
@@ -19,7 +18,7 @@ const API_KEY = process.env.API_KEY;
 // };
 
 function findMovies(search) {
-  let movieURL = `https://api.themoviedb.org/3/search/movie?include_adult=false&original_language=en-US&page=1&query=${search}?api_key=${API_KEY}`;
+  let movieURL = `https://api.themoviedb.org/3/search/movie?include_adult=false&original_language=en-US&page=1&query=${search}?api_key=9647c3387122f212c6ed1ddeb758ffb2`;
   // fetch(movieURL, movieAuth)
   fetch(movieURL)
     .then(function (response) {
