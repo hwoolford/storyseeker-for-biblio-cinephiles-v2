@@ -3,16 +3,17 @@ const form = document.getElementById("user-form");
 let formInput = document.getElementById("search-input");
 const main = document.getElementById("main_movie");
 const tableBody = document.getElementById("table");
-const outputList = document.getElementById("book-output")
-const row = document.getElementsByClassName("row")
+const outputList = document.getElementById("book-output");
+const row = document.getElementsByClassName("row");
 const placeHldr = "";
 let searchData;
 
 const movieAuth = {
-  method: 'GET',
+  method: "GET",
   headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NjQ3YzMzODcxMjJmMjEyYzZlZDFkZGViNzU4ZmZiMiIsInN1YiI6IjY1NGQwZGE0ZmQ0ZjgwMDExZWQzZDhjOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HB0iJ-sayz4Ungi3ekOAARph1iwM4wQe_pzuZsOeyzQ'
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NjQ3YzMzODcxMjJmMjEyYzZlZDFkZGViNzU4ZmZiMiIsInN1YiI6IjY1NGQwZGE0ZmQ0ZjgwMDExZWQzZDhjOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HB0iJ-sayz4Ungi3ekOAARph1iwM4wQe_pzuZsOeyzQ",
   },
 };
 
@@ -32,6 +33,7 @@ function showMovies(movies) {
   movies.forEach((movie) => {
     const { title, overview, poster_path } = movie;
     const movieEl = document.createElement("div");
+    movieEl.classList.add("movie-element");
     if (poster_path == null) {
       movieEl.innerHTML = `
       <h2>${title}</h2>
@@ -39,7 +41,6 @@ function showMovies(movies) {
 
       <img id="placeholder" src="./assets/images/StorySeeker_placeholder_image.png" alt ="${title}" /> 
       <div class="overview">
-      <h3>Overview</h3>
       ${overview}
       </div>
       </div>
@@ -50,7 +51,6 @@ function showMovies(movies) {
       <div class = "movieInfo">
       <img src="${imagePath + poster_path}" alt ="${title}" />
       <div class="overview">
-      <h3>Overview</h3>
       <p><i>Overview is not available<i></p>
       </div>
       </div>
@@ -61,7 +61,6 @@ function showMovies(movies) {
             <div class = "movieInfo">
             <img src="${imagePath + poster_path}" alt ="${title}" />
             <div class="overview">
-            <h3>Overview</h3>
             ${overview}
             </div>
             </div>
@@ -71,17 +70,17 @@ function showMovies(movies) {
   });
 }
 
-const modal = document.getElementById('myModal');
-const openModalButton = document.getElementById('openModalButton');
-openModalButton.style.display = 'none';
-const closeModalButton = document.querySelector('.modal-close');
+const modal = document.getElementById("myModal");
+const openModalButton = document.getElementById("openModalButton");
+openModalButton.style.display = "none";
+const closeModalButton = document.querySelector(".modal-close");
 
-openModalButton.addEventListener('click', () => {
-  modal.classList.add('is-active');
+openModalButton.addEventListener("click", () => {
+  modal.classList.add("is-active");
 });
 
-closeModalButton.addEventListener('click', () => {
-  modal.classList.remove('is-active');
+closeModalButton.addEventListener("click", () => {
+  modal.classList.remove("is-active");
 });
 // Select the modal element and store it in a variable
 const modal1 = document.getElementById("modal");
@@ -99,11 +98,12 @@ function findBooks(search) {
     .then((data) => {
       // console.log(data.works);
       if (data.works.length === 0) {
-        modal.classList.add('is-active'); // Open the modal
+        modal.classList.add("is-active"); // Open the modal
       } else {
         outputList.innerHTML = "";
         data.works.forEach((book) => {
           const bookEl = document.createElement("div");
+          bookEl.classList.add("book-element");
           bookEl.innerHTML = `
               <h2>${book.title}</h2>
               <div class="bookInfo">
@@ -128,7 +128,6 @@ form.addEventListener("submit", function (event) {
   if (!Array.isArray(storedHistory)) {
     storedHistory = [];
   }
-
 
   if (!storedHistory.includes(searchInput)) {
     storedHistory.push(searchInput);
@@ -168,7 +167,6 @@ let showHistory = function () {
       });
     }
   } else {
-
   }
 };
 
