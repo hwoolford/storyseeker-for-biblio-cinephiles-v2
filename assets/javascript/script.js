@@ -19,7 +19,7 @@ const movieAuth = {
 };
 
 function findMovies(search) {
-  let movieURL = `https://api.themoviedb.org/3/search/movie?include_adult=false&original_language=en-US&page=1&query=${search}`;
+  const movieURL = `https://api.themoviedb.org/3/search/movie?include_adult=false&original_language=en-US&page=1&query=${search}`;
   fetch(movieURL, movieAuth)
     .then(function (response) {
       return response.json();
@@ -76,9 +76,8 @@ function findBooks(search) {
   fetch(bookURL)
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data.works);
       if (data.works.length === 0) {
-        modal.classList.add("is-active"); // Open the modal
+        modal.classList.add("is-active"); 
       } else {
         outputList.innerHTML = "";
         data.works.forEach((book) => {
@@ -100,27 +99,40 @@ function findBooks(search) {
     });
 }
 
-formInput.addEventListener("input", function () {
-  const errorMessage = formInput.parentNode.querySelector(".error-message");
-  if (errorMessage) {
-    errorMessage.remove(); // Remove the error message from the DOM
-  }
-});
-
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   const searchInput = formInput.value.trim();
+
   if (searchInput === "") {
     // If the search input is empty, display a message
     const errorMessage = document.createElement("p");
     errorMessage.textContent = "Please enter a search term.";
-    errorMessage.classList.add("error-message"); // Add a class for styling
+    errorMessage.classList.add("error-message");
 
     // Insert the error message after the form input
     formInput.parentNode.insertBefore(errorMessage, formInput.nextSibling);
   } else {
-    // Open the modal instead of showing an alert
-    modal.classList.add("is-active");
+    // Remove any existing error message
+    const existingErrorMessage =
+      form.parentNode.querySelector(".error-message");
+    if (existingErrorMessage) {
+      existingErrorMessage.remove();
+    }
+
+    let storedHistory = JSON.parse(localStorage.getItem("searchTerm")) || [];
+
+    if (!Array.isArray(storedHistory)) {
+      storedHistory = [];
+    }
+
+    if (!storedHistory.includes(searchInput)) {
+      storedHistory.push(searchInput);
+    }
+    localStorage.setItem("searchTerm", JSON.stringify(storedHistory));
+
+    findMovies(searchInput);
+    findBooks(searchInput);
+    showHistory();
   }
 });
 

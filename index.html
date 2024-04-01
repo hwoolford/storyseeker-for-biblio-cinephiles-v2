@@ -1,67 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>StorySeeker</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <title>StorySeeker</title>
-</head>
+  <body>
+    <!-- Header -->
+    <header>
+      <h1 class="title">Storyseeker for Biblio-Cinephiles</h1>
+    </header>
+    <!-- Div , Explanation telling user to enter keywords,  -->
+    <div id="information">
+      <h2 id="directions">
+        Enter a search term to view books and movies related to the term. Click
+        on a previous term to view the search again.
+      </h2>
 
-<body>
-  <!-- Header -->
-  <header>
-  <h1 class="title">Storyseeker for Biblio-Cinephiles</h1>
-  </header>
-  <!-- Div , Explanation telling user to enter keywords,  -->
-  <div id="information">
-    <h2 id="directions"> Enter keywords of your choice and click the generate button, and a book and movie related to that keyword
-      will be shown
-    </h2>
-  
-  <!-- Div, Button, Add form or button -->
-  <div>
-    <form id="user-form">
-      <div class="text-input">
-      <input class="input is-primary" type="text" id="search-input" name="keyword" autocomplete="on" placeholder="Enter Keyword Here">
-    </div>
-    <div class="button-input">
-      <input class="button is-primary" type="submit" id="button" value="Search">
-    </div>
-    </form>
-  </div>
-  </div>
-
-  <main>
-    <div class="columns">
-      <div id="search-history" class="column is-one-fifth">
-        <table id="table"></table>
+      <!-- Div, Button, Add form or button -->
+      <div>
+        <form id="user-form">
+          <div class="text-input">
+            <input
+              class="input is-primary"
+              type="text"
+              id="search-input"
+              name="keyword"
+              autocomplete="on"
+              placeholder="Enter Keyword Here"
+            />
+          </div>
+          <div class="button-input">
+            <input
+              class="button is-primary"
+              type="submit"
+              id="button"
+              value="Search"
+            />
+          </div>
+        </form>
       </div>
-      <div id="book-output" class="column"></div>
-      <div id="main_movie" class="column"></div>
     </div>
 
-    <div class="row">
+    <main>
+      <div class="columns">
+        <div id="search-history" class="column is-one-fifth">
+          <div id="left">
+            <h2 class="column-heading">SEARCH HISTORY</h2>
+          </div>
+          <table id="table"></table>
+        </div>
+        <div class="column">
+          <div id="middle">
+            <h2 class="column-heading-pad">BOOKS</h2>
+          </div>
+          <div id="book-output"></div>
+        </div>
+        <div class="column">
+          <div id="right">
+            <h2 class="column-heading-pad">MOVIES</h2>
+            <div id="main_movie"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">
+          <div class="card"></div>
+          <div class="container"></div>
+        </div>
+      </div>
+
       <div class="column">
-        <div class="card"></div>
-        <div class="container"></div>
+        <div class="card">
+          <div class="container"></div>
+        </div>
       </div>
-    </div>
+    </main>
 
-    <div class="column">
-      <div class="card">
-        <div class="container"></div>
+    <footer>
+      <div id="tmdb">
+        <a href="https://www.themoviedb.org/">
+          <img src="./assets/images/tmdb.svg" alt="The Movie Database" />
+        </a>
+        <p>
+          This product uses the TMDB and Open Library APIs but is not endorsed
+          or certified by TMDB or Open Library.
+        </p>
       </div>
-    </div>
-  </main>
-
-  <footer>Apis included:https://developer.themoviedb.org/docs/getting-started, https://openlibrary.org/developers/api.
-   Storyseeker Website by Heather Woolford, Adam Smith, and Kiki Kittredge</footer>
-  <!-- Footer, Add attribution for API's, Created by Heather, Kiki, and Adam -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <script src="./assets/javascript/script.js"></script>
-</body>
-
+      <div id="developers">
+        <p>Created by Heather Woolford, Adam Smith, and Kiki Kittredge.</p>
+        <p>Redesigned and Updated by Heather Woolford.</p>
+      </div>
+    </footer>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./assets/javascript/script.js"></script>
+  </body>
 </html>
