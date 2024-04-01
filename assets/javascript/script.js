@@ -1,13 +1,12 @@
 const imagePath = "https://image.tmdb.org/t/p/w154/";
 const form = document.getElementById("user-form");
 let formInput = document.getElementById("search-input");
-const main = document.getElementById("main_movie");
+const main = document.getElementById("main-movie");
 const tableBody = document.getElementById("table");
 const outputList = document.getElementById("book-output");
 const row = document.getElementsByClassName("row");
 const btn = document.getElementById("button");
 const placeHldr = "";
-let searchData;
 
 const movieAuth = {
   method: "GET",
@@ -52,7 +51,7 @@ function showMovies(movies) {
       <div class = "movieInfo">
       <img src="${imagePath + poster_path}" alt ="${title}" />
       <div class="overview">
-      <p><i>Overview is not available<i></p>
+      <p><i>Overview is not available</i></p>
       </div>
       </div>
           `;
@@ -72,12 +71,19 @@ function showMovies(movies) {
 }
 
 function findBooks(search) {
-  const bookURL = `https://openlibrary.org/subjects/${search}.json`;
+  let bookURL = `https://openlibrary.org/subjects/${search}.json`;
   fetch(bookURL)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
     .then((data) => {
       if (data.works.length === 0) {
-        modal.classList.add("is-active"); 
+        const bookMessage = document.createElement("p");
+        bookMessage.textContent = "No books found.";
+        bookMessage.classList.add("book-message");
       } else {
         outputList.innerHTML = "";
         data.works.forEach((book) => {
@@ -91,11 +97,10 @@ function findBooks(search) {
             `;
           outputList.append(bookEl);
         });
-        // console.log(data);
       }
     })
     .catch((error) => {
-      console.log(error);
+      console.error("Error fetching data:", error);
     });
 }
 

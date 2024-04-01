@@ -34,12 +34,13 @@ header {
   display: flex;
 }
 
-.column-heading, .column-heading-pad {
+.column-heading,
+.column-heading-pad {
   font-size: 1.75rem;
   font-weight: bold;
   color: #00d1b2;
   padding-top: 2rem;
-} 
+}
 
 .column-heading-pad {
   padding-left: 2rem;
@@ -122,19 +123,19 @@ footer {
   text-align: right;
 }
 
-@media screen and (max-width: 950px){
+@media screen and (max-width: 950px) {
   footer p {
-    font-size: .75rem;
+    font-size: 0.75rem;
   }
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 500px) {
   footer p {
-    font-size: .5rem;
+    font-size: 0.5rem;
   }
 
   #tmdb img {
-    height: .5rem;
+    height: 0.5rem;
   }
 }
 
